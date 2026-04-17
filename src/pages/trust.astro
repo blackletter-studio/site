@@ -1,7 +1,46 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import NetworkTrafficTable from "../components/NetworkTrafficTable.astro";
+import ThreatModelSummary from "../components/ThreatModelSummary.astro";
 ---
-<BaseLayout title="Trust">
-  <h1 class="font-display text-3xl mb-6"><em class="text-oxblood not-italic">Trust.</em></h1>
-  <p class="text-ink-soft">Coming soon - our network-traffic inventory, threat model, and security-disclosure channel.</p>
+<BaseLayout title="Trust" description="Network-traffic inventory, threat model, and security-disclosure channel for Black Letter.">
+  <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-6">Black Letter Studio / Trust</p>
+
+  <h1 class="font-display text-4xl leading-none tracking-tight mb-8">Trust.</h1>
+
+  <p class="text-lg text-ink-soft leading-relaxed max-w-2xl mb-12">
+    Our customers are legal professionals. Documents they work with are privileged, confidential, and consequential. The whole point of Black Letter is that our tools are safer to install than the alternatives. This page is our complete network-traffic inventory, threat model, and disclosure channel — auditable, updated when we change things, verifiable against the code.
+  </p>
+
+  <section class="py-8 border-t border-black/10">
+    <h2 class="font-display text-2xl mb-4">Your documents never leave your computer.</h2>
+    <p class="text-ink-soft max-w-2xl mb-4">
+      Every feature runs client-side. Fair Copy's formatting engine runs inside Word. Proofmark's spellcheck runs inside Word via WebAssembly. There is no cloud processing, no LLM call, no document upload.
+    </p>
+  </section>
+
+  <section class="py-8 border-t border-black/10">
+    <h2 class="font-display text-2xl mb-4">Network-traffic inventory (complete)</h2>
+    <p class="text-ink-soft max-w-2xl mb-6">Every network call Black Letter's add-in can make. Nothing else crosses the wire.</p>
+    <NetworkTrafficTable />
+  </section>
+
+  <section class="py-8 border-t border-black/10">
+    <h2 class="font-display text-2xl mb-4">Threat model</h2>
+    <p class="text-ink-soft max-w-2xl mb-6">What we defend against, and how. (This is a user-facing summary. The full threat table with implementation details is <a href="https://github.com/blackletter-studio/.github/blob/main/docs/superpowers/specs/2026-04-16-black-letter-studio-design.md" class="text-oxblood underline">in the design spec</a>.)</p>
+    <ThreatModelSummary />
+  </section>
+
+  <section class="py-8 border-t border-black/10">
+    <h2 class="font-display text-2xl mb-4">Security disclosure</h2>
+    <p class="text-ink-soft max-w-2xl mb-4">Email <a href="mailto:security@blackletter.studio" class="text-oxblood underline">security@blackletter.studio</a>. PGP preferred; public key at <code class="font-mono text-sm">blackletter.studio/.well-known/security.asc</code> (published after M5).</p>
+    <p class="text-ink-soft max-w-2xl">Response commitment: acknowledgement within 3 business days, coordinated disclosure within 90 days. Reporters credited in release notes with consent. No bug bounty at launch.</p>
+  </section>
+
+  <section class="py-8 border-t border-black/10">
+    <h2 class="font-display text-2xl mb-4">No subscription. No kill switch. Works if we disappear.</h2>
+    <p class="text-ink-soft max-w-2xl">
+      License tokens verify locally on every launch. Once you've bought Fair Copy, the add-in will keep working even if Black Letter Studio shuts down tomorrow. We intentionally do not have the power to remotely disable your copy. No annual renewal, no check-in server that can go dark and lock you out.
+    </p>
+  </section>
 </BaseLayout>
