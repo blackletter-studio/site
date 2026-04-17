@@ -8,7 +8,11 @@ const faqs = [
   },
   {
     q: "Does Black Letter work on Mac, Windows, Web, and iPad?",
-    a: "Yes. The Word add-in works everywhere Office.js works: Word for Mac (16.50+), Word for Windows (2019+), Word for Web, and Word for iPad. One install, one license.",
+    a: "Yes. The Word add-in runs everywhere Office.js runs: Word for Mac (16.50+), Word for Windows (2019+), Word for Web, and Word for iPad. One install per Microsoft account follows you to every device. The one caveat: while we're still pre-AppSource, iPad users can't sideload directly — Apple blocks individual sideload on iOS. For iPad right now, your admin needs to push the manifest via Microsoft 365 admin center, or wait for the AppSource listing (in review) when iPad installs become one tap.",
+  },
+  {
+    q: "Should I install from AppSource or sideload?",
+    a: "Sideload is the fastest path today because the Microsoft AppSource listing is still in submission review. Both paths install exactly the same add-in from the same domain — AppSource simply means Word can find Fair Copy by searching in the Office store, instead of you downloading a manifest from our site. If you're setting up Fair Copy at a firm, sideload via Microsoft 365 admin center now; nothing about your install will need to change when the AppSource listing goes live.",
   },
   {
     q: "Do my documents leave my computer?",
@@ -32,7 +36,7 @@ const faqs = [
   },
   {
     q: "What about HIPAA / PII / regulated data?",
-    a: "Because Black Letter runs entirely on your device and never sees your document content, we're outside the scope of most data-processing regulations. For GDPR / CCPA purposes, our Data Processing Addendum at /legal/dpa (published alongside final EULA in M4) will confirm: we process no personal data of yours.",
+    a: "Because Black Letter runs entirely on your device and never sees your document content, we're outside the scope of most data-processing regulations. The only personal data we hold is the email address you enter when activating a paid license — the full list is itemized on /legal/privacy. For firms that need a signed Data Processing Addendum, email hello@blackletter.studio and we'll send the current draft.",
   },
 ];
 ---

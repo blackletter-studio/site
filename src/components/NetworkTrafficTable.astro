@@ -2,9 +2,9 @@
 const calls = [
   { call: "Add-in manifest load", when: "Office startup, periodic refresh", by: "Word runtime", payload: "Manifest XML (Microsoft-signed)" },
   { call: "Manifest update delivery", when: "When a new version ships", by: "Word runtime", payload: "Add-in bundle (Microsoft CDN)" },
-  { call: "License entitlement check", when: "First open after purchase; on-demand refresh", by: "Our add-in", payload: "Microsoft Graph API call; returns license state" },
-  { call: "License re-verification", when: "Once per 30 days, passive", by: "Our add-in", payload: "Same Graph endpoint; 90-day offline grace" },
-  { call: '"New version available" notice', when: "Startup check", by: "Our add-in", payload: "Signed JSON from updates.blackletter.studio" },
+  { call: "License activation", when: "Once, when you redeem a license code", by: "Our add-in", payload: "SHA-256(license code) + email, sent to fair-copy.blackletter.studio; signed JWT returned" },
+  { call: "License verification", when: "Every add-in launch (fully offline)", by: "Our add-in (on-device)", payload: "None — JWT verified locally against a public key bundled with the add-in" },
+  { call: '"New version available" notice', when: "Startup check, at most once per day", by: "Our add-in", payload: "Signed JSON from updates.blackletter.studio; no client data sent" },
   { call: "Feedback form submit", when: "You click Submit on this site's feedback page", by: "You (explicit)", payload: "Only the form fields you typed" },
 ];
 ---

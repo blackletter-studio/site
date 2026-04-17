@@ -16,11 +16,31 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <p>Nothing about your documents. No text, headers, paragraphs, filenames, or metadata. Every document operation (formatting strip, typo scan) runs entirely inside Word on your device via WebAssembly.</p>
 
     <h2 class="font-display text-2xl text-ink pt-4">What crosses the network</h2>
-    <p>See our <a href="/trust" class="text-oxblood underline">Trust page</a> for the full inventory. Briefly: Microsoft handles manifest loading and updates; we make one entitlement check against Microsoft Graph (returns license state only, not your identity); we fetch a signed JSON file periodically to tell you if a new version is available. Nothing else.</p>
+    <p>See our <a href="/trust" class="text-oxblood underline">Trust page</a> for the full inventory. Briefly:</p>
+    <ul class="list-disc list-outside ml-6 space-y-2">
+      <li>Microsoft handles manifest loading and Word itself; we make no calls to Microsoft beyond what Word does automatically.</li>
+      <li><strong class="text-ink">License activation.</strong> When you redeem a paid Fair Copy license code, the add-in makes one HTTPS call to our licensing server at <code class="font-mono text-sm">fair-copy.blackletter.studio</code>. It sends the license code (hashed) and the email address you entered, and receives a signed license token. That is the only time your email or license code leaves your computer.</li>
+      <li><strong class="text-ink">After activation, silence.</strong> The add-in verifies the token locally on every launch using a public key bundled with the add-in. Fair Copy works entirely offline once activated; no further calls to our servers.</li>
+      <li>We fetch a signed JSON file periodically (no more than once per day) to tell you if a new version is available. The outbound request carries no client data.</li>
+    </ul>
 
     <h2 class="font-display text-2xl text-ink pt-4">What we store about you</h2>
-    <p>On our servers: your purchase record with Microsoft (managed by Microsoft, not us), your email address if you opted into the newsletter. That's it.</p>
-    <p>On your device: your trial counter, your preset choice, your personal Proofmark dictionary, and a cached license JWT. All of this lives in <code class="font-mono text-sm">Office.context.roamingSettings</code>, syncs through your Microsoft 365 account (not ours), and is under your control.</p>
+    <p><strong class="text-ink">On our servers</strong> (Cloudflare KV):</p>
+    <ul class="list-disc list-outside ml-6 space-y-2">
+      <li><strong class="text-ink">Your email address</strong>, when you activate a paid Fair Copy license. We use it for one thing: if you reinstall Word or switch computers, you can re-activate the same license by re-entering your code and email, and get back a fresh token. Retention: lifetime of your license plus one renewal period; purged within 90 days of license lapse. Proofmark (free) is anonymous &mdash; no email is collected.</li>
+      <li><strong class="text-ink">Your IP address, temporarily</strong>, as a rate-limiting counter to prevent brute-force code guessing. Purged within 120 seconds by Cloudflare's TTL. Never associated with your email or license.</li>
+      <li><strong class="text-ink">A SHA-256 hash of your license code.</strong> The plaintext code is never stored.</li>
+    </ul>
+
+    <p class="pt-4"><strong class="text-ink">On your device</strong>:</p>
+    <ul class="list-disc list-outside ml-6 space-y-2">
+      <li>A signed license token (JWT) containing your email, role, feature set, and expiry. Verified locally on every launch.</li>
+      <li>Your trial counter, preset choice, and personal Proofmark dictionary.</li>
+    </ul>
+    <p class="pt-2">All of the above lives in <code class="font-mono text-sm">Office.context.roamingSettings</code>, syncs through your Microsoft 365 account (not ours), and is under your control. Uninstalling the add-in clears it.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">Who can see any of this</h2>
+    <p>Matt Rogers (as sole operator of Black Letter Studio) and the infrastructure of Cloudflare (our hosting provider, bound by its own published privacy terms). No third parties. No advertising networks or data brokers. No machine-learning training pipelines &mdash; ours or anyone else's. No employees; there aren't any.</p>
 
     <h2 class="font-display text-2xl text-ink pt-4">What we collect from this website</h2>
     <p>Aggregate, server-side analytics via Netlify: page views, referrer, country. No cookies, no client-side tracking script, no cross-site profile. You do not need to click a cookie banner on this site because we never set one.</p>

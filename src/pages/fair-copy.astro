@@ -51,19 +51,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   <section class="py-8 border-t border-black/10">
     <h3 class="font-display text-xl mb-4">Privacy</h3>
-    <p class="text-ink-soft max-w-2xl mb-2">Fair Copy runs entirely inside Microsoft Word on your device. No cloud processing. No document content leaves your computer. The only network calls Fair Copy makes are a one-time license check against Microsoft Graph and a daily version check.</p>
+    <p class="text-ink-soft max-w-2xl mb-2">Fair Copy runs entirely inside Microsoft Word on your device. No cloud processing. No document content leaves your computer. The only network call Fair Copy makes during normal use is a one-time license activation against our own server (<code class="font-mono text-sm">fair-copy.blackletter.studio</code>) when you first redeem a code. After that, license tokens verify locally &mdash; Fair Copy works offline.</p>
     <p class="text-sm text-ink-soft"><a href="/trust" class="text-oxblood underline">Full network-traffic inventory &rarr;</a></p>
   </section>
 
   <section class="py-12 border-t border-black/10">
     <div class="bg-paper border border-oxblood/30 rounded-md p-8 max-w-xl">
-      <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-3">Pricing</p>
+      <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-3">Install</p>
       <p class="font-display text-3xl mb-2"><strong class="font-normal">$49</strong> <span class="text-ink-soft text-lg">one-time</span></p>
-      <p class="text-sm text-ink-soft mb-6">Lifetime license. First 5 documents free. No subscription, no account, no telemetry.</p>
-      <button class="bg-ink text-paper px-6 py-3 rounded-md text-sm font-medium opacity-60 cursor-not-allowed" disabled>
-        Add to Word &mdash; coming soon
-      </button>
-      <p class="text-xs text-ink-soft mt-3 italic">Launches via Microsoft AppSource in 2026.</p>
+      <p class="text-sm text-ink-soft mb-6">Lifetime license. First 5 documents free. No subscription, no account, no telemetry. License tokens verify locally &mdash; Fair Copy keeps working even if Black Letter goes dark.</p>
+
+      <a href="/fair-copy/install" class="inline-block bg-ink text-paper px-6 py-3 rounded-md text-sm font-medium hover:bg-oxblood transition-colors">
+        Add to Word &rarr;
+      </a>
+      <p class="text-xs text-ink-soft mt-4 leading-relaxed">
+        Four-step sideload walkthrough. Works in Word for Mac, Windows, Web, and iPad.
+      </p>
+
+      <p class="text-xs text-ink-soft/80 mt-5 italic leading-relaxed border-t border-oxblood/20 pt-4">
+        Early access: request a license code at <a href="mailto:hello@blackletter.studio?subject=Fair%20Copy%20early%20access" class="text-oxblood underline not-italic">hello@blackletter.studio</a>. Checkout and the Microsoft AppSource listing are in review &mdash; both paths serve the same add-in.
+      </p>
     </div>
   </section>
 </BaseLayout>

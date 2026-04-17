@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Terms" description="Terms of use for blackletter.studio.">
+  <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-6">Legal / Terms</p>
+
+  <h1 class="font-display text-4xl leading-none tracking-tight mb-8">Terms of use</h1>
+
+  <div class="bg-black/5 border-l-2 border-oxblood/60 p-6 mb-10 text-sm">
+    <p class="font-medium mb-2">This is an alpha document.</p>
+    <p class="text-ink-soft">The final Terms of Use are being reviewed by a human lawyer and will be published before Black Letter's v1.0 goes on sale. Below is the current working version. It reflects our intent but is not yet enforceable legal text.</p>
+  </div>
+
+  <article class="prose prose-neutral max-w-none space-y-6 text-ink-soft">
+    <p class="text-sm">
+      <strong class="text-ink">Effective date:</strong> [PUBLISH DATE &mdash; set when this page goes live]<br>
+      <strong class="text-ink">Last updated:</strong> 2026-04-17
+    </p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">1. What this covers</h2>
+    <p>These terms govern your use of the website at <strong class="text-ink">blackletter.studio</strong>, its subdomains (including <code class="font-mono text-sm">fair-copy-addin.pages.dev</code> and <code class="font-mono text-sm">fair-copy.blackletter.studio</code>), and any documentation we publish. They do <em>not</em> cover your license to run the Fair Copy or Proofmark add-ins in Microsoft Word &mdash; that relationship is governed by our <a href="/legal/eula" class="text-oxblood underline">End User License Agreement</a>.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">2. Who we are</h2>
+    <p>Black Letter Studio is a solo-operated product studio owned by Matt Rogers. Contact: <a href="mailto:support@blackletter.studio" class="text-oxblood underline">support@blackletter.studio</a>.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">3. Acceptable use</h2>
+    <p>You may read the site, download the Fair Copy manifest, install the add-in, submit feedback, and link to public pages. You may not:</p>
+    <ul class="list-disc list-outside ml-6 space-y-2">
+      <li>scrape the site at a rate that degrades service for other users (reasonable archival or citation is fine);</li>
+      <li>attempt to bypass rate limits on the licensing server or generate unauthorized license tokens;</li>
+      <li>use our feedback form to send spam, malware, illegal content, or abuse;</li>
+      <li>mirror the site under a confusingly similar domain or misrepresent your affiliation with Black Letter Studio.</li>
+    </ul>
+
+    <h2 class="font-display text-2xl text-ink pt-4">4. Content you submit</h2>
+    <p>If you submit feedback through <a href="/feedback" class="text-oxblood underline">/feedback</a> or email us, you grant Black Letter Studio a non-exclusive, perpetual license to read your submission, act on it, and &mdash; if the feedback concerns a bug or feature &mdash; post a redacted version of it as a GitHub Issue in our <a href="https://github.com/blackletter-studio/feedback-intake" class="text-oxblood underline">feedback-intake</a> repository. We won't attach your name or email to a public Issue without your explicit permission. You retain ownership of your feedback.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">5. Links and third-party services</h2>
+    <p>The site links to third-party services (GitHub, Cloudflare, Microsoft, Buttondown). Those services have their own terms and privacy policies; we are not responsible for them. Our <a href="/trust" class="text-oxblood underline">Trust page</a> enumerates every third party that receives any data from our add-ins.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">6. Intellectual property</h2>
+    <p>The Black Letter Studio name, logo, and wordmark, along with the Fair Copy and Proofmark wordmarks, are trademarks of Matt Rogers. The website's visual design, copy, and illustrations are &copy; {new Date().getFullYear()} Black Letter Studio. The add-in source code is released under a proprietary license documented in each repository; the <a href="https://github.com/blackletter-studio/legal-augmentation-dictionary" class="text-oxblood underline">legal-augmentation-dictionary</a> is released under an open-source license (see its LICENSE file). You may not reproduce the site's design or copy, but you may cite it with attribution.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">7. Disclaimers</h2>
+    <p>The site is provided "as is." We aim for accuracy but cannot guarantee that every page is up-to-date at every moment. If you're relying on this site to make a purchase, installation, or compliance decision, the version you see at the time is the version that applies.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">8. Limitation of liability</h2>
+    <p>To the fullest extent permitted by law, Black Letter Studio is not liable for indirect, incidental, or consequential damages arising from your use of the site. Our total liability under these terms is capped at the amount you paid us in the 12 months preceding the claim (which will be zero for users who haven't purchased a license). This clause will be replaced with more specific wording in the lawyer-reviewed final version.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">9. Changes to these terms</h2>
+    <p>If we make material changes, we'll update the "Last updated" date at the top and &mdash; for paying customers &mdash; email the address on file at least 30 days before the change takes effect. Minor clarifications will be published without notice.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">10. Governing law</h2>
+    <p>[To be finalized with legal review. Working placeholder: the laws of the State of [Matt's state], United States, without regard to conflict-of-laws principles.]</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">11. Contact</h2>
+    <p>Questions about these terms: <a href="mailto:support@blackletter.studio" class="text-oxblood underline">support@blackletter.studio</a>. Subject line prefix <code class="font-mono text-sm">[Legal]</code> helps us route it quickly.</p>
+
+    <p class="pt-6 text-sm">Final wording will be reviewed and signed off by a licensed attorney before v1.0 ships. If anything above is inaccurate when finalized, we will update this page and note the change in <a href="/changelog" class="text-oxblood underline">the site changelog</a>.</p>
+  </article>
+</BaseLayout>
