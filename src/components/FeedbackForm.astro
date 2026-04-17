@@ -1,0 +1,111 @@
+---
+// Feedback form. POSTs JSON to the Worker at feedback.blackletter.studio/api/submit.
+// No API key on the client. Honeypot field is a hidden `<input name="website">`.
+---
+<form id="feedback-form" class="space-y-6 max-w-2xl">
+  <div>
+    <label for="fb-category" class="block text-sm font-medium mb-2">What's this about?</label>
+    <select id="fb-category" name="category" required class="w-full border border-black/20 rounded-md px-4 py-3 bg-paper text-sm">
+      <option value="">Choose one…</option>
+      <option value="bug-fair-copy">Bug in Fair Copy</option>
+      <option value="bug-proofmark">Bug in Proofmark</option>
+      <option value="feature">Feature request</option>
+      <option value="licensing">Question about licensing or pricing</option>
+      <option value="dictionary">Dictionary addition (missing or incorrect term)</option>
+      <option value="other">Something else</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="fb-title" class="block text-sm font-medium mb-2">Title</label>
+    <input id="fb-title" name="title" type="text" required minlength="3" maxlength="120"
+           class="w-full border border-black/20 rounded-md px-4 py-3 bg-paper text-sm"
+           placeholder="One sentence summary" />
+  </div>
+
+  <div>
+    <label for="fb-body" class="block text-sm font-medium mb-2">Details</label>
+    <textarea id="fb-body" name="body" required minlength="10" maxlength="5000" rows="8"
+              class="w-full border border-black/20 rounded-md px-4 py-3 bg-paper text-sm font-mono"
+              placeholder="Describe what you'd like to see. Markdown works here."></textarea>
+    <p class="text-xs text-ink-soft mt-1">Markdown supported. Up to 5,000 characters.</p>
+  </div>
+
+  <details class="border border-black/10 rounded-md p-4">
+    <summary class="cursor-pointer text-sm font-medium">Optional: leave your name and email if you want a reply</summary>
+    <div class="mt-4 space-y-4">
+      <div>
+        <label for="fb-name" class="block text-sm font-medium mb-2">Your name</label>
+        <input id="fb-name" name="name" type="text" maxlength="80"
+               class="w-full border border-black/20 rounded-md px-4 py-3 bg-paper text-sm" />
+      </div>
+      <div>
+        <label for="fb-email" class="block text-sm font-medium mb-2">Your email</label>
+        <input id="fb-email" name="email" type="email" maxlength="120"
+               class="w-full border border-black/20 rounded-md px-4 py-3 bg-paper text-sm" />
+      </div>
+      <div>
+        <label for="fb-role" class="block text-sm font-medium mb-2">Your role (optional, helps us triage)</label>
+        <select id="fb-role" name="role" class="w-full border border-black/20 rounded-md px-4 py-3 bg-paper text-sm">
+          <option value="">Not specified</option>
+          <option value="lawyer">Lawyer / Attorney</option>
+          <option value="paralegal">Paralegal</option>
+          <option value="assistant">Legal assistant</option>
+          <option value="firm-it">Firm IT / Operations</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </div>
+  </details>
+
+  <!-- honeypot: real users won't see this; bots fill it -->
+  <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
+         class="absolute left-[-9999px] h-0 w-0 opacity-0" />
+
+  <button type="submit" id="fb-submit" class="bg-ink text-paper px-6 py-3 rounded-md text-sm font-medium hover:bg-oxblood transition-colors">
+    Send feedback
+  </button>
+  <p id="fb-status" class="text-sm hidden"></p>
+</form>
+
+<script is:inline>
+  (function() {
+    const form = document.getElementById("feedback-form");
+    const btn = document.getElementById("fb-submit");
+    const status = document.getElementById("fb-status");
+    if (!form || !btn || !status) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+      const data = {};
+      new FormData(form).forEach((v, k) => { if (v) data[k] = v; });
+
+      try {
+        const res = await fetch("https://feedback.blackletter.studio/api/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (res.ok && json.ok) {
+          status.textContent = "Thanks — we got your message. If you left an email, we'll reply. Otherwise, track progress at github.com/blackletter-studio/feedback-intake.";
+          status.className = "text-sm text-oxblood font-medium";
+          form.reset();
+          btn.style.display = "none";
+        } else {
+          const msg = json.error || "Something went wrong.";
+          status.textContent = `Error: ${msg}`;
+          status.className = "text-sm text-red-600";
+        }
+      } catch (err) {
+        status.textContent = "Network error — please check your connection and try again.";
+        status.className = "text-sm text-red-600";
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Send feedback";
+      }
+    });
+  })();
+</script>
