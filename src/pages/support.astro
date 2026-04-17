@@ -1,7 +1,69 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const faqs = [
+  {
+    q: "Do I need a subscription?",
+    a: "No. Black Letter is one-time purchase, lifetime license. $49 for Fair Copy (bundled with Proofmark). Once you've bought it, you own it — no annual renewal, no subscription, no feature reductions.",
+  },
+  {
+    q: "Does Black Letter work on Mac, Windows, Web, and iPad?",
+    a: "Yes. The Word add-in works everywhere Office.js works: Word for Mac (16.50+), Word for Windows (2019+), Word for Web, and Word for iPad. One install, one license.",
+  },
+  {
+    q: "Do my documents leave my computer?",
+    a: "No. Every operation runs inside Microsoft Word on your device. The formatting transform runs client-side. Proofmark runs client-side via WebAssembly. We have no cloud spellcheck, no cloud anything that touches your documents. See our /trust page for the complete network-traffic inventory.",
+  },
+  {
+    q: "What if you go out of business?",
+    a: "Your installed copy keeps working. License tokens verify locally; there's no kill switch. We deliberately do not have the power to remotely disable your copy.",
+  },
+  {
+    q: "Can I try before I buy?",
+    a: "Yes. Your first 5 documents are free — no account, no credit card. After the 5, Fair Copy drops into preview mode (you can see what would be cleaned, but not save the output). Proofmark stays fully functional in preview mode.",
+  },
+  {
+    q: "How do I get priority support if I'm a paying customer?",
+    a: "Licensed users can email premium@blackletter.studio from inside the add-in (the license ID is attached automatically). We aim to respond within 2 business days. For unlicensed users, use the /feedback form — it's not a priority queue, but every message is read by a human.",
+  },
+  {
+    q: "Can I use this at my firm?",
+    a: "Yes, one license per individual. Firms buying in bulk can contact us for multi-seat pricing (available post-v1). For small firms, individual licenses stack just fine.",
+  },
+  {
+    q: "What about HIPAA / PII / regulated data?",
+    a: "Because Black Letter runs entirely on your device and never sees your document content, we're outside the scope of most data-processing regulations. For GDPR / CCPA purposes, our Data Processing Addendum at /legal/dpa (published alongside final EULA in M4) will confirm: we process no personal data of yours.",
+  },
+];
 ---
-<BaseLayout title="Support">
-  <h1 class="font-display text-3xl mb-6"><em class="text-oxblood not-italic">Support.</em></h1>
-  <p class="text-ink-soft">Coming soon - FAQ and contact info. Licensed users get premium support via email.</p>
+<BaseLayout title="Support" description="FAQ and contact information for Black Letter.">
+  <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-6">Black Letter Studio / Support</p>
+
+  <h1 class="font-display text-4xl leading-none tracking-tight mb-8">Support.</h1>
+
+  <p class="text-lg text-ink-soft leading-relaxed max-w-2xl mb-12">
+    Common questions below. For anything else, use the <a href="/feedback" class="text-oxblood underline">feedback form</a> — no GitHub account required. Licensed users can email <a href="mailto:premium@blackletter.studio" class="text-oxblood underline">premium@blackletter.studio</a> directly for priority support.
+  </p>
+
+  <section class="py-8 border-t border-black/10">
+    <h2 class="font-display text-2xl mb-6">Frequently asked</h2>
+    <div class="space-y-6 max-w-2xl">
+      {faqs.map(f => (
+        <details class="border-l-2 border-oxblood/30 pl-6">
+          <summary class="cursor-pointer font-display text-lg leading-tight">{f.q}</summary>
+          <p class="text-ink-soft mt-3 leading-relaxed">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="py-12 border-t border-black/10 max-w-2xl">
+    <h2 class="font-display text-2xl mb-4">Didn't find what you need?</h2>
+    <ul class="space-y-3 text-ink-soft">
+      <li>→ <a href="/feedback" class="text-oxblood underline">Send feedback</a> (anonymous OK)</li>
+      <li>→ Licensed users: <a href="mailto:premium@blackletter.studio" class="text-oxblood underline">premium@blackletter.studio</a> (2-business-day SLA)</li>
+      <li>→ Security disclosure: <a href="mailto:security@blackletter.studio" class="text-oxblood underline">security@blackletter.studio</a></li>
+      <li>→ Press and partnerships: <a href="mailto:hello@blackletter.studio" class="text-oxblood underline">hello@blackletter.studio</a></li>
+    </ul>
+  </section>
 </BaseLayout>
