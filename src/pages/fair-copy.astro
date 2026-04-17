@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import MobileInstallNotice from "../components/MobileInstallNotice.astro";
 ---
 <BaseLayout title="Fair Copy" description="Fair Copy strips formatting noise from Word documents while preserving emphasis and alignment.">
   <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-6">Black Letter Studio / Fair Copy</p>
 
-  <h1 class="font-display text-4xl leading-none tracking-tight mb-8">
+  <h1 class="font-display text-2xl sm:text-4xl leading-none tracking-tight mb-8">
     Fair <em class="text-oxblood not-italic font-normal">Copy.</em>
   </h1>
 
@@ -56,7 +57,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </section>
 
   <section class="py-12 border-t border-black/10">
-    <div class="bg-paper border border-oxblood/30 rounded-md p-8 max-w-xl">
+    <MobileInstallNotice subject="Install Fair Copy when I'm at my desktop" shareUrl="https://blackletter.studio/fair-copy" />
+
+    <div class="hidden md:block bg-paper border border-oxblood/30 rounded-md p-8 max-w-xl">
       <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-3">Install</p>
       <p class="font-display text-3xl mb-2"><strong class="font-normal">$49</strong> <span class="text-ink-soft text-lg">one-time</span></p>
       <p class="text-sm text-ink-soft mb-6">Lifetime license. First 5 documents free. No subscription, no account, no telemetry. License tokens verify locally &mdash; Fair Copy keeps working even if Black Letter goes dark.</p>

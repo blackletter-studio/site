@@ -22,7 +22,12 @@ All notable changes to the Black Letter site and public-facing infrastructure ar
 - `fair-copy/public/manifest.xml` synced with `fair-copy/manifest.prod.xml` and marked as a mirror in its comment block; `manifest.prod.xml` remains the canonical source
 - Footer adds a `/legal/terms` link alongside Privacy and EULA
 
-### In progress
+### Fixed (mobile UX)
+
+- Phone visitors to `/fair-copy` and `/fair-copy/install` no longer see the sideload download button they cannot actually use on a phone. The new `MobileInstallNotice` component renders on `md:hidden` viewports (narrower than 768px) with a clear "Fair Copy needs desktop Word" message and a one-tap mailto button that pre-fills "email this page to myself" so they can resume the install on their computer. Word add-ins are not supported in Word for iPhone or Android — that's a Microsoft platform constraint.
+- Hero headlines across every page (11 files) scale from `text-4xl` (96px) on desktop down to `text-2xl` (40px) on mobile, so long titles like "End User License Agreement" no longer blow off the viewport.
+- Top navigation switches from horizontal-tight to vertical-stacked on narrow screens: logo on the first row, nav links on the second, with `flex-wrap` so the four links reflow instead of overflowing.
+- `NetworkTrafficTable` on `/trust` is wrapped in `overflow-x-auto` with a `min-w-[640px]` on the table itself and a "swipe the table horizontally" hint beneath — wide four-column tables no longer squash into illegibility on phones.
 
 - Cloudflare Worker at `feedback.blackletter.studio` for the /feedback form (M1 T9-T11)
 - Replacing the /feedback placeholder with a working form (M1 T11)

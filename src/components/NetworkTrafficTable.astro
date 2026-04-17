@@ -8,23 +8,26 @@ const calls = [
   { call: "Feedback form submit", when: "You click Submit on this site's feedback page", by: "You (explicit)", payload: "Only the form fields you typed" },
 ];
 ---
-<table class="w-full text-sm border-collapse">
-  <thead>
-    <tr class="border-b border-oxblood/30">
-      <th class="text-left py-3 pr-4 font-mono text-xs uppercase tracking-wider text-oxblood">Call</th>
-      <th class="text-left py-3 pr-4 font-mono text-xs uppercase tracking-wider text-oxblood">When</th>
-      <th class="text-left py-3 pr-4 font-mono text-xs uppercase tracking-wider text-oxblood">Initiator</th>
-      <th class="text-left py-3 font-mono text-xs uppercase tracking-wider text-oxblood">Payload</th>
-    </tr>
-  </thead>
-  <tbody>
-    {calls.map(c => (
-      <tr class="border-b border-black/10 align-top">
-        <td class="py-3 pr-4 font-medium">{c.call}</td>
-        <td class="py-3 pr-4 text-ink-soft">{c.when}</td>
-        <td class="py-3 pr-4 text-ink-soft">{c.by}</td>
-        <td class="py-3 text-ink-soft">{c.payload}</td>
+<div class="overflow-x-auto">
+  <table class="w-full min-w-[640px] text-sm border-collapse">
+    <thead>
+      <tr class="border-b border-oxblood/30">
+        <th class="text-left py-3 pr-4 font-mono text-xs uppercase tracking-wider text-oxblood">Call</th>
+        <th class="text-left py-3 pr-4 font-mono text-xs uppercase tracking-wider text-oxblood">When</th>
+        <th class="text-left py-3 pr-4 font-mono text-xs uppercase tracking-wider text-oxblood">Initiator</th>
+        <th class="text-left py-3 font-mono text-xs uppercase tracking-wider text-oxblood">Payload</th>
       </tr>
-    ))}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {calls.map(c => (
+        <tr class="border-b border-black/10 align-top">
+          <td class="py-3 pr-4 font-medium">{c.call}</td>
+          <td class="py-3 pr-4 text-ink-soft">{c.when}</td>
+          <td class="py-3 pr-4 text-ink-soft">{c.by}</td>
+          <td class="py-3 text-ink-soft">{c.payload}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+<p class="md:hidden text-xs text-ink-soft/70 italic mt-2">Swipe the table horizontally to see every column.</p>

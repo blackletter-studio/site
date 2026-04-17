@@ -7,9 +7,9 @@ const links = [
 ];
 ---
 <nav class="border-b border-black/10">
-  <div class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
+  <div class="max-w-4xl mx-auto px-6 py-3 sm:py-0 sm:h-14 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
     <a href="/" class="font-display text-xl"><span>Black</span> <em class="not-italic text-oxblood">Letter.</em></a>
-    <ul class="flex gap-6 text-sm">
+    <ul class="flex flex-wrap gap-4 sm:gap-6 text-sm">
       {links.map(l => <li><a href={l.href} class="hover:text-oxblood">{l.label}</a></li>)}
     </ul>
   </div>
