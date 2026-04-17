@@ -1,5 +1,57 @@
-<!-- Stub — real Buttondown integration lands in M1 Task 8 -->
+---
+// Email signup — posts directly to Buttondown's public /api/emails/embed-subscribe.
+// No secret on the client. Buttondown handles double-opt-in (sends a
+// confirmation email; the user must click before being added to the list).
+// The username is visible in the public URL; it is not a secret.
+const BUTTONDOWN_USERNAME = "PENDING"; // TODO: replace once Matt confirms Buttondown username
+---
 <div class="max-w-xl">
-  <h3 class="font-display text-xl mb-3">Get notified when the next tool ships.</h3>
-  <p class="text-sm text-ink-soft">Email signup coming soon.</p>
+  <h3 class="font-display text-xl mb-3">
+    Get notified when the next tool ships.
+  </h3>
+  <p class="text-sm text-ink-soft mb-6">
+    One email, at most, every few months. No promotions. Unsubscribe in one click.
+  </p>
+  <form id="email-signup-form" class="flex gap-3" method="POST" action={`https://buttondown.email/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`}>
+    <input
+      type="email"
+      name="email"
+      required
+      autocomplete="email"
+      placeholder="you@firm.com"
+      class="flex-1 border border-black/20 rounded-md px-4 py-3 text-sm bg-paper focus:outline-none focus:border-oxblood"
+    />
+    <button
+      type="submit"
+      class="bg-ink text-paper px-6 py-3 rounded-md text-sm font-medium hover:bg-oxblood transition-colors"
+    >
+      Subscribe
+    </button>
+    <input type="hidden" value="1" name="embed" />
+  </form>
+  <p id="email-signup-status" class="text-xs text-ink-soft mt-3 hidden"></p>
 </div>
+
+<script is:inline>
+  // Intercept submit; use fetch to Buttondown so the user stays on our page.
+  (function() {
+    var form = document.getElementById("email-signup-form");
+    var status = document.getElementById("email-signup-status");
+    if (!form) return;
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      fetch(form.action, { method: "POST", body: data, mode: "no-cors" })
+        .then(function() {
+          status.textContent = "Check your inbox for a confirmation email to complete your subscription.";
+          status.className = "text-xs text-oxblood mt-3";
+          form.reset();
+        })
+        .catch(function() {
+          status.textContent = "Something went wrong — please try again or email hello@blackletter.studio.";
+          status.className = "text-xs text-red-600 mt-3";
+        });
+    });
+  })();
+</script>
