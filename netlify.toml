@@ -1,10 +1,16 @@
 [build]
-  # `pnpm rebuild` force-runs postinstall scripts on native-binary packages
-  # (esbuild, sharp, @parcel/watcher, unrs-resolver). pnpm 10 disables install
-  # scripts by default; even with onlyBuiltDependencies set, Netlify's cached
-  # build environment sometimes skips them. Explicit rebuild guarantees binaries.
-  command = "pnpm install --frozen-lockfile && pnpm rebuild && pnpm build"
+  command = "pnpm install --frozen-lockfile && pnpm build"
   publish = "dist"
+
+# Skip deploy previews for PRs entirely — we don't need them for a
+# solo-dev marketing site, and they double the Netlify build-minute spend.
+# Local `pnpm build` verifies before merge. Only main-branch pushes get built.
+[context.deploy-preview]
+  ignore = "exit 0"
+
+# Same for any non-main branch push (e.g., feature branches pushed directly).
+[context.branch-deploy]
+  ignore = "exit 0"
 
 [build.environment]
   # Astro 6 requires Node >=22.12. Using v22 LTS.
