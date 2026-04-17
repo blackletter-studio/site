@@ -1,7 +1,69 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-<BaseLayout title="Fair Copy">
-  <h1 class="font-display text-3xl mb-6">Fair <em class="text-oxblood not-italic">Copy.</em></h1>
-  <p class="text-ink-soft">Coming soon - strip formatting noise from any Word document while keeping what you meant.</p>
+<BaseLayout title="Fair Copy" description="Fair Copy strips formatting noise from Word documents while preserving emphasis and alignment.">
+  <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-6">Black Letter Studio / Fair Copy</p>
+
+  <h1 class="font-display text-4xl leading-none tracking-tight mb-8">
+    Fair <em class="text-oxblood not-italic font-normal">Copy.</em>
+  </h1>
+
+  <p class="text-lg text-ink-soft leading-relaxed max-w-2xl mb-12">
+    Open a Word document. Click one button. Font faces, font sizes, colors, highlighting, comments, and sloppy indents — gone. Bold, italic, underline, and your paragraph alignment — kept. Now you have a clean document you can send, file, or format to house style.
+  </p>
+
+  <section class="py-8 border-y border-black/10 my-8 grid sm:grid-cols-2 gap-8">
+    <div>
+      <h3 class="font-display text-xl mb-4">What Fair Copy keeps</h3>
+      <ul class="text-sm text-ink-soft space-y-2">
+        <li>&#x2713; Bold / italic / underline emphasis</li>
+        <li>&#x2713; Paragraph alignment</li>
+        <li>&#x2713; List structure (with normalized bullets)</li>
+        <li>&#x2713; Tables (normalized borders)</li>
+        <li>&#x2713; Footnotes and endnotes</li>
+        <li>&#x2713; Hyperlinks (link preserved, formatting stripped)</li>
+        <li>&#x2713; Section and page breaks</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-display text-xl mb-4">What Fair Copy removes</h3>
+      <ul class="text-sm text-ink-soft space-y-2">
+        <li>&#x2717; Font face / size / color variations</li>
+        <li>&#x2717; Highlighting (configurable)</li>
+        <li>&#x2717; Comments</li>
+        <li>&#x2717; Custom indents and stray tab stops</li>
+        <li>&#x2717; Inconsistent line and paragraph spacing</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-8">
+    <h3 class="font-display text-xl mb-4">Safe by default</h3>
+    <p class="text-ink-soft max-w-2xl mb-4">
+      Three operations always surface a confirmation dialog &mdash; never silent, never surprising:
+    </p>
+    <ul class="text-ink-soft space-y-3 max-w-2xl">
+      <li><strong class="text-ink">Tracked changes.</strong> Default is &ldquo;reject all&rdquo; &mdash; but only after you confirm, with options to review first or leave them alone.</li>
+      <li><strong class="text-ink">Images.</strong> Default is &ldquo;warn and list&rdquo; &mdash; Fair Copy shows the images it found (signature blocks, letterheads, exhibits) and asks what to do.</li>
+      <li><strong class="text-ink">Marked-Final or password-protected documents.</strong> Warned before any change.</li>
+    </ul>
+  </section>
+
+  <section class="py-8 border-t border-black/10">
+    <h3 class="font-display text-xl mb-4">Privacy</h3>
+    <p class="text-ink-soft max-w-2xl mb-2">Fair Copy runs entirely inside Microsoft Word on your device. No cloud processing. No document content leaves your computer. The only network calls Fair Copy makes are a one-time license check against Microsoft Graph and a daily version check.</p>
+    <p class="text-sm text-ink-soft"><a href="/trust" class="text-oxblood underline">Full network-traffic inventory &rarr;</a></p>
+  </section>
+
+  <section class="py-12 border-t border-black/10">
+    <div class="bg-paper border border-oxblood/30 rounded-md p-8 max-w-xl">
+      <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-3">Pricing</p>
+      <p class="font-display text-3xl mb-2"><strong class="font-normal">$49</strong> <span class="text-ink-soft text-lg">one-time</span></p>
+      <p class="text-sm text-ink-soft mb-6">Lifetime license. First 5 documents free. No subscription, no account, no telemetry.</p>
+      <button class="bg-ink text-paper px-6 py-3 rounded-md text-sm font-medium opacity-60 cursor-not-allowed" disabled>
+        Add to Word &mdash; coming soon
+      </button>
+      <p class="text-xs text-ink-soft mt-3 italic">Launches via Microsoft AppSource in 2026.</p>
+    </div>
+  </section>
 </BaseLayout>
