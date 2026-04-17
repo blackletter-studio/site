@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "feedback-worker",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    {
+      "pattern": "feedback.blackletter.studio/api/*",
+      "zone_name": "blackletter.studio",
+    },
+  ],
+  "vars": {
+    "INTAKE_REPO": "blackletter-studio/feedback-intake",
+  },
+  // Secret: GITHUB_TOKEN (set via `wrangler secret put GITHUB_TOKEN` in Task 10)
+}
