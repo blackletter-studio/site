@@ -1,7 +1,45 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-<BaseLayout title="Proofmark">
-  <h1 class="font-display text-3xl mb-6">Proof<em class="text-oxblood not-italic">mark.</em></h1>
-  <p class="text-ink-soft">Coming soon - flag probable typos with a highlighter that will not collide with tracked-changes markup.</p>
+<BaseLayout title="Proofmark" description="Proofmark flags probable typos with a highlighter-pen treatment that never collides with Word's tracked-changes markup.">
+  <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-6">Black Letter Studio / Proofmark</p>
+
+  <h1 class="font-display text-4xl leading-none tracking-tight mb-8">
+    Proof<em class="text-oxblood not-italic font-normal">mark.</em>
+  </h1>
+
+  <p class="text-lg text-ink-soft leading-relaxed max-w-2xl mb-12">
+    A typo-highlighter that doesn't fight your tracked changes. Word's built-in red squiggle looks too much like redline markup in a legal document — a lawyer's eye has to re-parse every mark. Proofmark uses a soft amber highlight instead. Different visual language for a different kind of annotation. No more mental double-take.
+  </p>
+
+  <section class="py-8 border-y border-black/10 my-8">
+    <h3 class="font-display text-xl mb-4">How it works</h3>
+    <ol class="text-ink-soft space-y-4 max-w-2xl list-decimal list-inside">
+      <li>Open a Word document. Click Proof in the Black Letter ribbon.</li>
+      <li>Proofmark scans the body, skipping headers / footers / comments by default (configurable).</li>
+      <li>Every likely typo gets a soft amber highlight — visually distinct from Word's red squiggle (spelling) and red strikethrough (tracked changes).</li>
+      <li>The task pane lists every finding with context. You can <em>Add to my dictionary</em>, <em>Ignore once</em>, <em>Ignore in this doc</em>, or <em>Go to word</em>.</li>
+      <li>Proofmark never auto-corrects. You always decide.</li>
+    </ol>
+  </section>
+
+  <section class="py-8">
+    <h3 class="font-display text-xl mb-4">Built for legal vocabulary</h3>
+    <p class="text-ink-soft max-w-2xl mb-4">
+      Proofmark ships with a curated <a href="https://github.com/blackletter-studio/legal-augmentation-dictionary" class="text-oxblood underline">legal-augmentation dictionary</a> — Latin maxims (<em>res ipsa loquitur</em>, <em>voir dire</em>), federal and state court names, Bluebook abbreviations, signing formulas, and common legal terminology. All curated publicly on GitHub. Propose additions via PR; the review process requires two human reviewers and a canary-corpus test.
+    </p>
+    <p class="text-sm text-ink-soft">Your personal dictionary (case names, local rules, firm-specific vocabulary) lives in your Microsoft 365 account and syncs across your devices — never ours.</p>
+  </section>
+
+  <section class="py-8 border-t border-black/10">
+    <h3 class="font-display text-xl mb-4">Client-side only</h3>
+    <p class="text-ink-soft max-w-2xl mb-2">
+      Proofmark runs entirely inside Word via WebAssembly (Hunspell-WASM). There is no cloud spellcheck. Your document text never leaves your computer. No API keys, no phone-home, no analytics.
+    </p>
+    <p class="text-sm text-ink-soft"><a href="/trust" class="text-oxblood underline">Full network-traffic inventory →</a></p>
+  </section>
+
+  <section class="py-12 border-t border-black/10">
+    <p class="text-ink-soft max-w-2xl">Proofmark is bundled with <a href="/fair-copy" class="text-oxblood underline">Fair Copy</a> — one install, one ribbon tab, two tools. See <a href="/fair-copy" class="text-oxblood underline">the Fair Copy page</a> for pricing and install details.</p>
+  </section>
 </BaseLayout>
