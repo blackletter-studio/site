@@ -7,7 +7,8 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+  # Astro 6 requires Node >=22.12. Using v22 LTS.
+  NODE_VERSION = "22"
   PNPM_VERSION = "10"
 
 [[headers]]
