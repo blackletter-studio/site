@@ -1,7 +1,42 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
-<BaseLayout title="Privacy">
-  <h1 class="font-display text-3xl mb-6"><em class="text-oxblood not-italic">Privacy.</em></h1>
-  <p class="text-ink-soft">Coming soon - our privacy policy.</p>
+<BaseLayout title="Privacy" description="Privacy policy for Black Letter Studio.">
+  <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-6">Legal / Privacy</p>
+
+  <h1 class="font-display text-4xl leading-none tracking-tight mb-8">Privacy policy</h1>
+
+  <div class="bg-black/5 border-l-2 border-oxblood/60 p-6 mb-10 text-sm">
+    <p class="font-medium mb-2">Short version, up front: we collect nothing about you.</p>
+    <p class="text-ink-soft">No analytics, no document content, no usage telemetry. The long version below is where we prove that claim with an itemized inventory.</p>
+  </div>
+
+  <article class="prose prose-neutral max-w-none space-y-6 text-ink-soft">
+    <h2 class="font-display text-2xl text-ink">What we collect from your Black Letter add-in</h2>
+    <p>Nothing about your documents. No text, headers, paragraphs, filenames, or metadata. Every document operation (formatting strip, typo scan) runs entirely inside Word on your device via WebAssembly.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">What crosses the network</h2>
+    <p>See our <a href="/trust" class="text-oxblood underline">Trust page</a> for the full inventory. Briefly: Microsoft handles manifest loading and updates; we make one entitlement check against Microsoft Graph (returns license state only, not your identity); we fetch a signed JSON file periodically to tell you if a new version is available. Nothing else.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">What we store about you</h2>
+    <p>On our servers: your purchase record with Microsoft (managed by Microsoft, not us), your email address if you opted into the newsletter. That's it.</p>
+    <p>On your device: your trial counter, your preset choice, your personal Proofmark dictionary, and a cached license JWT. All of this lives in <code class="font-mono text-sm">Office.context.roamingSettings</code>, syncs through your Microsoft 365 account (not ours), and is under your control.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">What we collect from this website</h2>
+    <p>Aggregate, server-side analytics via Netlify: page views, referrer, country. No cookies, no client-side tracking script, no cross-site profile. You do not need to click a cookie banner on this site because we never set one.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">Feedback form</h2>
+    <p>If you use our feedback form at <a href="/feedback" class="text-oxblood underline">/feedback</a>: we store your submission as a GitHub Issue in <a href="https://github.com/blackletter-studio/feedback-intake" class="text-oxblood underline">feedback-intake</a>. The form is anonymous by default; you can optionally provide an email if you want a reply. Your IP address is used only for abuse-prevention rate limiting and is not stored.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">Email list</h2>
+    <p>Our newsletter is run by Buttondown. If you sign up, Buttondown stores your email address. One-click unsubscribe on every email. We never sell, rent, or share the list with third parties. We send no more than quarterly and only when a new product or major update ships.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">Data deletion and portability</h2>
+    <p>To delete everything: uninstall the add-in (clears your device-local state), unsubscribe from the newsletter (one click in any email), and email <a href="mailto:privacy@blackletter.studio" class="text-oxblood underline">privacy@blackletter.studio</a> if you'd like us to purge any feedback-form submissions tied to you. For GDPR / CCPA data-subject requests, email the same address — we will respond within 30 days.</p>
+
+    <h2 class="font-display text-2xl text-ink pt-4">Contact</h2>
+    <p>Privacy questions: <a href="mailto:privacy@blackletter.studio" class="text-oxblood underline">privacy@blackletter.studio</a>. Security disclosures: <a href="mailto:security@blackletter.studio" class="text-oxblood underline">security@blackletter.studio</a>.</p>
+
+    <p class="pt-6 text-sm">This document will be reviewed and finalized by a human lawyer before v1.0 ships. If anything above is inaccurate when finalized, we will update this page and note the change in <a href="/changelog" class="text-oxblood underline">the site changelog</a>.</p>
+  </article>
 </BaseLayout>

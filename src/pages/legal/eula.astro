@@ -1,7 +1,35 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
-<BaseLayout title="EULA">
-  <h1 class="font-display text-3xl mb-6"><em class="text-oxblood not-italic">EULA.</em></h1>
-  <p class="text-ink-soft">Coming soon - the End User License Agreement.</p>
+<BaseLayout title="EULA" description="End User License Agreement for Black Letter products.">
+  <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-6">Legal / EULA</p>
+
+  <h1 class="font-display text-4xl leading-none tracking-tight mb-8">End User License Agreement</h1>
+
+  <div class="bg-black/5 border-l-2 border-oxblood/60 p-6 mb-10 text-sm">
+    <p class="font-medium mb-2">This is an alpha document.</p>
+    <p class="text-ink-soft">The final EULA is being drafted by a human lawyer and will be published before Black Letter's v1.0 goes on sale. Below is the current working summary. It reflects our intent but is not yet enforceable legal text.</p>
+  </div>
+
+  <article class="prose prose-neutral max-w-none space-y-6 text-ink-soft">
+    <h2 class="font-display text-2xl text-ink">Our commitments</h2>
+    <ol class="space-y-3 list-decimal list-inside">
+      <li><strong class="text-ink">One-time purchase, perpetual license.</strong> When you buy Fair Copy, you own it for the lifetime of the v1 product family. No subscription, no auto-renewal, no feature reductions after purchase.</li>
+      <li><strong class="text-ink">Works offline, works if we disappear.</strong> License tokens verify locally. We do not have and will never add a remote kill switch.</li>
+      <li><strong class="text-ink">No telemetry.</strong> We do not collect analytics, usage data, or document content.</li>
+      <li><strong class="text-ink">Transferable on major life changes.</strong> Changed firms? Retired? Let us know and we'll reissue your license to your new setup at no cost.</li>
+    </ol>
+
+    <h2 class="font-display text-2xl text-ink pt-4">Your commitments</h2>
+    <ol class="space-y-3 list-decimal list-inside">
+      <li>Use Black Letter products within the law and within your bar's rules of professional conduct.</li>
+      <li>One license per individual. Firms purchasing in bulk should contact us for multi-seat terms (available post-v1).</li>
+      <li>Do not redistribute the add-in, share license tokens, or reverse-engineer for competitive purposes. Reverse-engineering for security audit and interoperability is allowed (and encouraged).</li>
+    </ol>
+
+    <h2 class="font-display text-2xl text-ink pt-4">What we don't promise</h2>
+    <p>Black Letter tools are provided "as is." We test thoroughly and run against a large corpus before shipping, but we cannot guarantee bug-free operation, fitness for every specific use, or protection against third-party issues (Microsoft Word bugs, malicious documents, etc.). <strong class="text-ink">Always keep a backup of any document before running a formatting transform.</strong></p>
+
+    <p class="pt-6 text-sm">Final EULA wording will include the standard limitation-of-liability and warranty-disclaimer language drafted by a licensed attorney, in plain English where possible.</p>
+  </article>
 </BaseLayout>
