@@ -1,5 +1,9 @@
 [build]
-  command = "pnpm build"
+  # `pnpm rebuild` force-runs postinstall scripts on native-binary packages
+  # (esbuild, sharp, @parcel/watcher, unrs-resolver). pnpm 10 disables install
+  # scripts by default; even with onlyBuiltDependencies set, Netlify's cached
+  # build environment sometimes skips them. Explicit rebuild guarantees binaries.
+  command = "pnpm install --frozen-lockfile && pnpm rebuild && pnpm build"
   publish = "dist"
 
 [build.environment]
