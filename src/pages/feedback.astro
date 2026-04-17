@@ -1,7 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import FeedbackForm from "../components/FeedbackForm.astro";
 ---
-<BaseLayout title="Feedback">
-  <h1 class="font-display text-3xl mb-6"><em class="text-oxblood not-italic">Feedback.</em></h1>
-  <p class="text-ink-soft">Coming soon - feature-request form, no GitHub account required.</p>
+<BaseLayout title="Feedback" description="Send feedback, feature requests, or bug reports. No GitHub account required.">
+  <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-6">Black Letter Studio / Feedback</p>
+
+  <h1 class="font-display text-4xl leading-none tracking-tight mb-8">Tell us what you need.</h1>
+
+  <p class="text-lg text-ink-soft leading-relaxed max-w-2xl mb-12">
+    Feature ideas, bugs, licensing questions, missing dictionary terms — all land here. No GitHub account required; you can stay anonymous or leave an email if you want a reply. Submissions go to our public <a href="https://github.com/blackletter-studio/feedback-intake" class="text-oxblood underline">feedback-intake tracker</a> where a human triages them.
+  </p>
+
+  <section class="py-8 border-t border-black/10">
+    <FeedbackForm />
+  </section>
+
+  <section class="py-12 border-t border-black/10 max-w-2xl">
+    <h2 class="font-display text-xl mb-4">A note on privacy</h2>
+    <p class="text-sm text-ink-soft">We store your submission as a GitHub Issue. Your IP address is used only for abuse rate limiting (3 submissions per hour per IP) and is stored in the Issue only in redacted form (last octet masked). If you leave your email, Buttondown is NOT used — it's only stored in the Issue and used by a human to reply.</p>
+  </section>
 </BaseLayout>
