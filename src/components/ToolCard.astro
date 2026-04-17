@@ -1,0 +1,19 @@
+---
+interface Props {
+  name: string;
+  tagline: string;
+  href: string;
+}
+const { name, tagline, href } = Astro.props;
+// Split "Fair Copy" into first word + rest so we can style the rest in oxblood italic
+const parts = name.split(" ");
+const firstWord = parts[0];
+const rest = parts.slice(1).join(" ");
+---
+<a href={href} class="group block border border-black/10 rounded-md p-8 hover:border-oxblood transition-colors">
+  <h3 class="font-display text-2xl mb-3">
+    {firstWord} <em class="not-italic text-oxblood">{rest}.</em>
+  </h3>
+  <p class="text-sm text-ink-soft mb-4 leading-relaxed">{tagline}</p>
+  <span class="text-sm font-medium text-oxblood group-hover:underline">Read more →</span>
+</a>

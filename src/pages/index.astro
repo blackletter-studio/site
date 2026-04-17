@@ -1,14 +1,41 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ToolCard from "../components/ToolCard.astro";
+import EmailSignup from "../components/EmailSignup.astro";
 ---
-<BaseLayout title="Simple tools for the considered practice">
-  <h1 class="font-display text-4xl leading-none tracking-tight mb-8">
-    Simple tools for the <em class="text-oxblood not-italic font-normal">considered practice.</em>
-  </h1>
-  <p class="text-lg text-ink-soft max-w-2xl mb-12">
-    Black Letter is a new studio shipping quiet, precise utilities for legal professionals.
-    Launching soon with <a href="/fair-copy" class="underline">Fair Copy</a> and
-    <a href="/proofmark" class="underline">Proofmark</a> for Microsoft Word.
-  </p>
-  <p class="text-sm text-ink-soft">Site under construction.</p>
+<BaseLayout title="Simple tools for the considered practice"
+            description="Black Letter is an indie tool studio shipping simple, elegant desktop utilities for legal professionals.">
+  <Hero
+    eyebrow="Black Letter Studio / 001"
+    headline={'Simple tools for the <em class="text-oxblood not-italic font-normal">considered practice.</em>'}
+    tagline="Black Letter ships quiet, precise utilities for legal professionals. Every tool is one-time purchase, zero telemetry, client-side only. Your documents never leave your computer."
+  />
+
+  <section class="py-12 grid sm:grid-cols-2 gap-6">
+    <ToolCard
+      name="Fair Copy"
+      tagline="Strip formatting noise from any Word document while keeping what you meant — bold, italic, underline, and alignment."
+      href="/fair-copy"
+    />
+    <ToolCard
+      name="Proofmark"
+      tagline="Flag likely typos with a highlighter-pen treatment that never collides with tracked changes."
+      href="/proofmark"
+    />
+  </section>
+
+  <section class="py-12 border-t border-black/10">
+    <h2 class="font-display text-2xl mb-6">What makes Black Letter different</h2>
+    <ul class="space-y-4 text-ink-soft max-w-2xl">
+      <li><strong class="text-ink">Zero telemetry.</strong> No analytics, no tracking, no document content ever leaves your device.</li>
+      <li><strong class="text-ink">One-time purchase.</strong> $49 lifetime. No subscription. No account. Works offline. Works if we disappear.</li>
+      <li><strong class="text-ink">Open and auditable.</strong> The add-in source and legal dictionary are public on GitHub.</li>
+      <li><strong class="text-ink">Built for your workflow.</strong> Lives inside Word. One button does what you wanted. Advanced settings hidden until you ask.</li>
+    </ul>
+  </section>
+
+  <section class="py-12 border-t border-black/10">
+    <EmailSignup />
+  </section>
 </BaseLayout>
