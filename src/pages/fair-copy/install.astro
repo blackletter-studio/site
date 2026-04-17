@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import MobileInstallNotice from "../../components/MobileInstallNotice.astro";
 
 // Canonical manifest URL served from the Cloudflare Pages deploy.
 // If/when `addin.blackletter.studio` is wired up, update this URL and
@@ -14,7 +15,7 @@ const manifestUrl = "https://fair-copy-addin.pages.dev/manifest.xml";
     Black Letter Studio / Fair Copy / Install
   </p>
 
-  <h1 class="font-display text-4xl leading-none tracking-tight mb-8">
+  <h1 class="font-display text-2xl sm:text-4xl leading-none tracking-tight mb-8">
     Install <em class="text-oxblood not-italic font-normal">Fair Copy.</em>
   </h1>
 
@@ -22,8 +23,10 @@ const manifestUrl = "https://fair-copy-addin.pages.dev/manifest.xml";
     Four steps. Under two minutes. Works in Word for Mac, Windows, Web, and iPad. The Microsoft AppSource listing is in review; this sideload path installs the same add-in from the same domain &mdash; it just skips the store search.
   </p>
 
-  {/* ------- Download button ------- */}
-  <section class="py-8 border-y border-black/10 my-8">
+  <MobileInstallNotice subject="Install Fair Copy when I'm at my desktop" shareUrl="https://blackletter.studio/fair-copy/install" />
+
+  {/* ------- Download button (hidden on phones via Mobile notice above) ------- */}
+  <section class="py-8 border-y border-black/10 my-8 hidden md:block">
     <div class="bg-paper border border-oxblood/30 rounded-md p-8 max-w-xl">
       <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-3">
         Step 0 &mdash; download

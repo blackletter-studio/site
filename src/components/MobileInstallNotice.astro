@@ -1,0 +1,74 @@
+---
+// Phone-only notice for Fair Copy pages.
+//
+// Microsoft Word add-ins do not run in Word for iPhone / Android — that's a
+// Microsoft platform restriction, not something we can work around. When a
+// visitor lands on /fair-copy or /fair-copy/install from a phone, pointing
+// them at the sideload flow is a dead-end; instead, we explain the
+// constraint and give them a one-tap "email this page to myself" action so
+// they can resume on a desktop.
+//
+// Rendering: this block uses `md:hidden` so it only shows on viewports
+// narrower than 768px (phones). On tablets (including iPad) and desktop
+// it stays hidden and the regular install flow takes over.
+//
+// iPad note: iPad is actually tablet-sized (768-1024px) so it falls into
+// the "desktop" branch. That's correct for messaging ("here's the install
+// flow") even though individual iPad sideload is blocked by Apple — the
+// iPad caveat is already spelled out in Step 1 of the install guide and in
+// the support FAQ, so we don't duplicate it here.
+
+interface Props {
+  /** Optional override for the mailto subject. */
+  subject?: string;
+  /** The absolute URL to include in the mailto body. Defaults to the
+   *  install guide. */
+  shareUrl?: string;
+}
+const {
+  subject = "Install Fair Copy when I'm at my desktop",
+  shareUrl = "https://blackletter.studio/fair-copy/install",
+} = Astro.props;
+
+const mailtoBody = [
+  "Install Fair Copy on your desktop: " + shareUrl,
+  "",
+  "Fair Copy strips formatting noise from Word documents while preserving bold, italic, and alignment. Works in Word for Mac, Windows, and Word for the Web. Needs a desktop or laptop (the Word app for iPhone / Android doesn't support add-ins).",
+].join("\n");
+
+const mailto =
+  "mailto:?subject=" +
+  encodeURIComponent(subject) +
+  "&body=" +
+  encodeURIComponent(mailtoBody);
+---
+
+<div class="md:hidden bg-oxblood/5 border-l-2 border-oxblood rounded-md p-6 my-6">
+  <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-3">
+    On a phone?
+  </p>
+  <h3 class="font-display text-xl leading-tight mb-3">
+    You&rsquo;ll need a desktop or laptop.
+  </h3>
+  <p class="text-sm text-ink-soft leading-relaxed mb-5">
+    Fair Copy runs inside Microsoft Word on Mac, Windows, or Word for the
+    Web. The Word app on iPhone and Android doesn&rsquo;t support add-ins
+    &mdash; that&rsquo;s a Microsoft platform constraint, not something we
+    can work around.
+  </p>
+  <p class="text-sm text-ink-soft leading-relaxed mb-5">
+    The easiest path: email this page to yourself now, then open it on your
+    computer when you&rsquo;re ready to install.
+  </p>
+
+  <a
+    href={mailto}
+    class="inline-block bg-ink text-paper px-5 py-3 rounded-md text-sm font-medium hover:bg-oxblood transition-colors"
+  >
+    Email this link to myself &rarr;
+  </a>
+
+  <p class="text-xs text-ink-soft/80 mt-4 leading-relaxed">
+    Or bookmark <code class="font-mono text-xs bg-black/5 px-1.5 py-0.5 rounded break-all">{shareUrl}</code> and open it on your desktop.
+  </p>
+</div>
