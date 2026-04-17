@@ -1,0 +1,18 @@
+---
+const threats = [
+  { title: "Document content exfiltration", mitigation: "Spellcheck runs client-side via Hunspell-WASM. Document text never crosses the network. No telemetry, no error reports that include document content." },
+  { title: "License-token forgery", mitigation: "Ed25519 signatures on every license token. Private key in Azure Key Vault (HSM tier). Public key bundled with the add-in; verification is local." },
+  { title: "Supply-chain attack via dependency", mitigation: "Under 20 direct npm dependencies. Exact versions pinned. Dependabot + Socket.dev in CI. SBOM published with every release." },
+  { title: "Dictionary poisoning (malicious PR)", mitigation: "CODEOWNERS requires two human reviewers for any dictionary change. CI runs the new dictionary against a 200-document canary corpus and fails on >10% delta in false-positive or false-negative rate." },
+  { title: "Input-driven XSS in task pane", mitigation: "Every string from the document is rendered via text nodes or escaped templating — never innerHTML. Dual-layer CSP: Office runtime + our own strict CSP." },
+  { title: "We disappear / go out of business", mitigation: "License tokens verify locally. No kill switch. No phone-home required after first activation (90-day grace on re-verification). Installed copies keep working indefinitely." },
+];
+---
+<div class="space-y-6">
+  {threats.map(t => (
+    <div class="border-l-2 border-oxblood/40 pl-6">
+      <h4 class="font-display text-lg mb-2">{t.title}</h4>
+      <p class="text-sm text-ink-soft leading-relaxed">{t.mitigation}</p>
+    </div>
+  ))}
+</div>
