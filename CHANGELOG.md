@@ -4,11 +4,32 @@ All notable changes to the Black Letter site and public-facing infrastructure ar
 
 ## [Unreleased]
 
+### Added (Fair Copy launch prep)
+
+- Fair Copy production task-pane hosting on Cloudflare Pages (`fair-copy-addin.pages.dev`) — the add-in now runs from our own infrastructure, not localhost
+- Sideload install guide at `/fair-copy/install` — four-step walkthrough + per-platform notes + troubleshooting + screenshot placeholders for Matt to fill in
+- Terms of Use draft at `/legal/terms` — alpha banner, final wording pending counsel review
+- AppSource submission checklist, store-listing copy, and custom-domain setup guide under `docs/launch/appsource/`
+- Placeholder FC-monogram icons in Fair Copy burgundy at 7 sizes (16 / 32 / 64 / 80 / 128 / 300 / 512)
+- Launch-ops docs route table at `docs/launch/README.md`
+- `build:prod` and `deploy` npm scripts in the Fair Copy package for one-command releases
+
+### Changed
+
+- Fair Copy landing page CTA is live — "Add to Word →" links to the sideload install guide (was "coming soon" disabled button)
+- Privacy policy at `/legal/privacy` updated to reflect actual licensing-server data flows: email associated with license code, IP as 120-second rate-limit counter, SHA-256 of license code, signed JWT stored in `roamingSettings`
+- Support FAQ refreshed — removed "in M4" / "Microsoft AppSource in 2026" language; added entries for "iPad sideload" and "AppSource vs sideload — which should I use?"
+- `fair-copy/public/manifest.xml` synced with `fair-copy/manifest.prod.xml` and marked as a mirror in its comment block; `manifest.prod.xml` remains the canonical source
+- Footer adds a `/legal/terms` link alongside Privacy and EULA
+
 ### In progress
 
 - Cloudflare Worker at `feedback.blackletter.studio` for the /feedback form (M1 T9-T11)
 - Replacing the /feedback placeholder with a working form (M1 T11)
 - Replacing the hardcoded Buttondown username placeholder once an account is provisioned
+- Real GUID for `manifest.prod.xml` `<Id>` (currently a zero-based placeholder)
+- Custom domain `addin.blackletter.studio` wired up to the Pages project (dashboard click; instructions in `docs/launch/appsource/custom-domain-setup.md`)
+- Designer-produced branded icons to replace the FC-monogram placeholders
 
 ## [0.1.0-alpha] - 2026-04-17
 

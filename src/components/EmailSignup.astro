@@ -1,57 +1,103 @@
 ---
-// Email signup — posts directly to Buttondown's public /api/emails/embed-subscribe.
-// No secret on the client. Buttondown handles double-opt-in (sends a
-// confirmation email; the user must click before being added to the list).
-// The username is visible in the public URL; it is not a secret.
-const BUTTONDOWN_USERNAME = "PENDING"; // TODO: replace once Matt confirms Buttondown username
+// Email signup.
+//
+// When BUTTONDOWN_USERNAME is set to a real username, this component renders
+// a form that posts directly to Buttondown's public
+// `/api/emails/embed-subscribe` endpoint. Buttondown handles double-opt-in
+// (sends a confirmation email; the user must click before being added to the
+// list). The username is visible in the public URL; it is not a secret.
+//
+// When BUTTONDOWN_USERNAME is the placeholder "PENDING" (default state before
+// a newsletter service is provisioned), we render an honest "coming soon"
+// stub with a mailto fallback — because the previous behavior was to post to
+// `https://buttondown.email/api/emails/embed-subscribe/PENDING` (a 404) with
+// `mode: "no-cors"` and then lie to the user that their subscription worked.
+// Never silently drop a submission.
+//
+// To enable the real form: replace "PENDING" with your confirmed Buttondown
+// username below. No other edits needed.
+const BUTTONDOWN_USERNAME = "PENDING"; // TODO: replace once Buttondown account is provisioned
+const ENABLED = BUTTONDOWN_USERNAME !== "PENDING";
 ---
-<div class="max-w-xl">
-  <h3 class="font-display text-xl mb-3">
-    Get notified when the next tool ships.
-  </h3>
-  <p class="text-sm text-ink-soft mb-6">
-    One email, at most, every few months. No promotions. Unsubscribe in one click.
-  </p>
-  <form id="email-signup-form" class="flex gap-3" method="POST" action={`https://buttondown.email/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`}>
-    <input
-      type="email"
-      name="email"
-      required
-      autocomplete="email"
-      placeholder="you@firm.com"
-      class="flex-1 border border-black/20 rounded-md px-4 py-3 text-sm bg-paper focus:outline-none focus:border-oxblood"
-    />
-    <button
-      type="submit"
-      class="bg-ink text-paper px-6 py-3 rounded-md text-sm font-medium hover:bg-oxblood transition-colors"
+
+{ENABLED ? (
+  <div class="max-w-xl">
+    <h3 class="font-display text-xl mb-3">
+      Get notified when the next tool ships.
+    </h3>
+    <p class="text-sm text-ink-soft mb-6">
+      One email, at most, every few months. No promotions. Unsubscribe in one click.
+    </p>
+    <form
+      id="email-signup-form"
+      class="flex gap-3"
+      method="POST"
+      action={`https://buttondown.email/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`}
     >
-      Subscribe
-    </button>
-    <input type="hidden" value="1" name="embed" />
-  </form>
-  <p id="email-signup-status" class="text-xs text-ink-soft mt-3 hidden"></p>
-</div>
+      <input
+        type="email"
+        name="email"
+        required
+        autocomplete="email"
+        placeholder="you@firm.com"
+        class="flex-1 border border-black/20 rounded-md px-4 py-3 text-sm bg-paper focus:outline-none focus:border-oxblood"
+      />
+      <button
+        type="submit"
+        class="bg-ink text-paper px-6 py-3 rounded-md text-sm font-medium hover:bg-oxblood transition-colors"
+      >
+        Subscribe
+      </button>
+      <input type="hidden" value="1" name="embed" />
+    </form>
+    <p id="email-signup-status" class="text-xs text-ink-soft mt-3 hidden"></p>
 
-<script is:inline>
-  // Intercept submit; use fetch to Buttondown so the user stays on our page.
-  (function() {
-    var form = document.getElementById("email-signup-form");
-    var status = document.getElementById("email-signup-status");
-    if (!form) return;
+    <script is:inline>
+      (function () {
+        var form = document.getElementById("email-signup-form");
+        var status = document.getElementById("email-signup-status");
+        if (!form) return;
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      var data = new FormData(form);
-      fetch(form.action, { method: "POST", body: data, mode: "no-cors" })
-        .then(function() {
-          status.textContent = "Check your inbox for a confirmation email to complete your subscription.";
-          status.className = "text-xs text-oxblood mt-3";
-          form.reset();
-        })
-        .catch(function() {
-          status.textContent = "Something went wrong — please try again or email hello@blackletter.studio.";
-          status.className = "text-xs text-red-600 mt-3";
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var data = new FormData(form);
+          // We still use mode:"no-cors" because Buttondown's embed endpoint
+          // doesn't return CORS headers. In exchange we accept that the
+          // promise resolves even on 4xx/5xx — but since we only reach this
+          // code path when ENABLED is true (real username configured), the
+          // request is at least targeted at a valid account.
+          fetch(form.action, { method: "POST", body: data, mode: "no-cors" })
+            .then(function () {
+              status.textContent =
+                "Check your inbox for a confirmation email to complete your subscription.";
+              status.className = "text-xs text-oxblood mt-3";
+              form.reset();
+            })
+            .catch(function () {
+              status.textContent =
+                "Something went wrong — please try again or email hello@blackletter.studio.";
+              status.className = "text-xs text-red-600 mt-3";
+            });
         });
-    });
-  })();
-</script>
+      })();
+    </script>
+  </div>
+) : (
+  <div class="max-w-xl">
+    <h3 class="font-display text-xl mb-3">
+      Get notified when the next tool ships.
+    </h3>
+    <p class="text-sm text-ink-soft mb-3 leading-relaxed">
+      The newsletter service is being set up. To join the early list, email us and we&rsquo;ll add you by hand &mdash; one reply to confirm, then at most one email every few months when a new tool or major update ships. No promotions. One-click unsubscribe when the service is live.
+    </p>
+    <a
+      href="mailto:hello@blackletter.studio?subject=Newsletter%20signup&body=Please%20add%20me%20to%20the%20Black%20Letter%20Studio%20list."
+      class="inline-block bg-ink text-paper px-6 py-3 rounded-md text-sm font-medium hover:bg-oxblood transition-colors"
+    >
+      Email hello@blackletter.studio &rarr;
+    </a>
+    <p class="text-xs text-ink-soft mt-4 italic">
+      Building the subscriber form directly into the site is on the launch checklist; until then this is the honest version.
+    </p>
+  </div>
+)}

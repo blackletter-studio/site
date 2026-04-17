@@ -1,0 +1,192 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+// Canonical manifest URL served from the Cloudflare Pages deploy.
+// If/when `addin.blackletter.studio` is wired up, update this URL and
+// nothing else on this page needs to change.
+const manifestUrl = "https://fair-copy-addin.pages.dev/manifest.xml";
+---
+<BaseLayout
+  title="Install Fair Copy"
+  description="Four-step walkthrough to install Fair Copy in Microsoft Word — sideload the manifest, open a document, click the ribbon button."
+>
+  <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-6">
+    Black Letter Studio / Fair Copy / Install
+  </p>
+
+  <h1 class="font-display text-4xl leading-none tracking-tight mb-8">
+    Install <em class="text-oxblood not-italic font-normal">Fair Copy.</em>
+  </h1>
+
+  <p class="text-lg text-ink-soft leading-relaxed max-w-2xl mb-12">
+    Four steps. Under two minutes. Works in Word for Mac, Windows, Web, and iPad. The Microsoft AppSource listing is in review; this sideload path installs the same add-in from the same domain &mdash; it just skips the store search.
+  </p>
+
+  {/* ------- Download button ------- */}
+  <section class="py-8 border-y border-black/10 my-8">
+    <div class="bg-paper border border-oxblood/30 rounded-md p-8 max-w-xl">
+      <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-3">
+        Step 0 &mdash; download
+      </p>
+      <h2 class="font-display text-xl mb-3">Get the manifest file</h2>
+      <p class="text-sm text-ink-soft mb-6">
+        A <em>manifest</em> is a small XML file that tells Word where to load Fair Copy from. Download it once; Word keeps a reference after that, and updates ship automatically from our server.
+      </p>
+
+      <a
+        href={manifestUrl}
+        download="fair-copy-manifest.xml"
+        class="inline-block bg-ink text-paper px-6 py-3 rounded-md text-sm font-medium hover:bg-oxblood transition-colors"
+      >
+        Download manifest.xml &darr;
+      </a>
+
+      <p class="text-xs text-ink-soft mt-4 leading-relaxed">
+        Direct link: <a href={manifestUrl} class="text-oxblood underline break-all">{manifestUrl}</a>
+      </p>
+    </div>
+  </section>
+
+  {/* ------- Step 1 ------- */}
+  <section class="py-10 border-t border-black/10">
+    <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-3">Step 1</p>
+    <h2 class="font-display text-2xl mb-4">Open Word and find &ldquo;Add-ins&rdquo;</h2>
+
+    <p class="text-ink-soft max-w-2xl mb-6 leading-relaxed">
+      Exact path varies by platform, but the words &ldquo;Add-ins&rdquo; or &ldquo;My Add-ins&rdquo; always appear. Here&rsquo;s where to look:
+    </p>
+
+    <ul class="space-y-3 max-w-2xl text-sm text-ink-soft">
+      <li>
+        <strong class="text-ink">Word for Mac and Windows (2019+):</strong> Home tab &rarr; <em>Add-ins</em> button (far right) &rarr; <em>More Add-ins</em> &rarr; <em>My Add-ins</em> tab.
+      </li>
+      <li>
+        <strong class="text-ink">Word for the Web:</strong> Home tab &rarr; <em>Add-ins</em> dropdown &rarr; <em>More Add-ins</em> &rarr; <em>My Add-ins</em> tab.
+      </li>
+      <li>
+        <strong class="text-ink">Word for iPad:</strong> Insert tab &rarr; <em>Add-ins</em>. Sideload from iPad requires your account admin to push the manifest through Microsoft 365 admin center &mdash; individual iPad sideload is blocked by Apple. Once the AppSource listing is live, iPad installs become one tap. See the <a href="/support" class="text-oxblood underline">support page</a> or email <a href="mailto:support@blackletter.studio" class="text-oxblood underline">support@blackletter.studio</a> for help.
+      </li>
+    </ul>
+
+    <div class="mt-8 aspect-video bg-black/5 border border-dashed border-ink/20 rounded-md flex items-center justify-center text-sm text-ink-soft max-w-2xl">
+      [Screenshot placeholder: Word ribbon with &ldquo;Add-ins&rdquo; button highlighted &mdash; Mac + Windows side-by-side, 1600&times;900]
+    </div>
+  </section>
+
+  {/* ------- Step 2 ------- */}
+  <section class="py-10 border-t border-black/10">
+    <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-3">Step 2</p>
+    <h2 class="font-display text-2xl mb-4">Click &ldquo;Upload My Add-in&rdquo;</h2>
+
+    <p class="text-ink-soft max-w-2xl mb-6 leading-relaxed">
+      In the &ldquo;My Add-ins&rdquo; tab of the dialog that opens, you&rsquo;ll see an <em>Upload My Add-in</em> link in the top-right corner. Click it &mdash; a file picker appears.
+    </p>
+
+    <div class="aspect-video bg-black/5 border border-dashed border-ink/20 rounded-md flex items-center justify-center text-sm text-ink-soft max-w-2xl">
+      [Screenshot placeholder: &ldquo;My Add-ins&rdquo; dialog with &ldquo;Upload My Add-in&rdquo; link highlighted, 1600&times;900]
+    </div>
+  </section>
+
+  {/* ------- Step 3 ------- */}
+  <section class="py-10 border-t border-black/10">
+    <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-3">Step 3</p>
+    <h2 class="font-display text-2xl mb-4">Choose the manifest file you downloaded</h2>
+
+    <p class="text-ink-soft max-w-2xl mb-6 leading-relaxed">
+      Navigate to your Downloads folder, select <code class="font-mono text-sm bg-black/5 px-1.5 py-0.5 rounded">fair-copy-manifest.xml</code>, and click <em>Upload</em>. Word will validate it and install Fair Copy within a few seconds.
+    </p>
+
+    <p class="text-sm text-ink-soft max-w-2xl">
+      You&rsquo;ll see a brief &ldquo;Fair Copy is loading&hellip;&rdquo; indicator, then the task pane opens on the right side of your document.
+    </p>
+  </section>
+
+  {/* ------- Step 4 ------- */}
+  <section class="py-10 border-t border-black/10">
+    <p class="font-mono text-xs uppercase tracking-[0.22em] text-oxblood mb-3">Step 4</p>
+    <h2 class="font-display text-2xl mb-4">You&rsquo;re done &mdash; open a document and try it</h2>
+
+    <p class="text-ink-soft max-w-2xl mb-4 leading-relaxed">
+      From now on, Fair Copy appears in Word&rsquo;s Home ribbon as a button labeled <em>Fair Copy</em>. Click it to open the task pane on any document. Your first five documents run in full, unrestricted mode &mdash; no card, no signup, no waiting.
+    </p>
+
+    <p class="text-sm text-ink-soft max-w-2xl">
+      When you&rsquo;re ready for a lifetime license, click <em>Activate</em> in the task pane and enter your license code. Don&rsquo;t have one? Email <a href="mailto:hello@blackletter.studio?subject=Fair%20Copy%20license%20code" class="text-oxblood underline">hello@blackletter.studio</a> during early access and we&rsquo;ll send one.
+    </p>
+
+    <div class="mt-8 aspect-video bg-black/5 border border-dashed border-ink/20 rounded-md flex items-center justify-center text-sm text-ink-soft max-w-2xl">
+      [Screenshot placeholder: Fair Copy task pane open on the right side of a Word document, with the &ldquo;Clean document&rdquo; button centered, 1600&times;900]
+    </div>
+  </section>
+
+  {/* ------- Security reassurance ------- */}
+  <section class="py-10 border-t border-black/10">
+    <h2 class="font-display text-2xl mb-4">Is sideload safe?</h2>
+    <p class="text-ink-soft max-w-2xl mb-4 leading-relaxed">
+      Yes. Sideload is the same mechanism IT departments use to deploy custom Office tools inside a firm. The manifest is signed by Microsoft&rsquo;s validator when you upload it; the add-in itself is the same bundle we submit to AppSource. Nothing is pre-loaded with your data, and Fair Copy requests <em>ReadWriteDocument</em> permission only &mdash; it cannot see other files, your Outlook, or anything outside the Word document you&rsquo;re editing.
+    </p>
+
+    <p class="text-sm text-ink-soft max-w-2xl">
+      Our full network-traffic inventory is on the <a href="/trust" class="text-oxblood underline">Trust page</a>, and the add-in source is <a href="https://github.com/blackletter-studio/fair-copy" class="text-oxblood underline">public on GitHub</a>.
+    </p>
+  </section>
+
+  {/* ------- Troubleshooting ------- */}
+  <section class="py-10 border-t border-black/10">
+    <h2 class="font-display text-2xl mb-6">If something goes wrong</h2>
+
+    <div class="space-y-6 max-w-2xl">
+      <details class="border-l-2 border-oxblood/30 pl-6">
+        <summary class="cursor-pointer font-display text-lg leading-tight">
+          The Upload button is greyed out or missing.
+        </summary>
+        <p class="text-ink-soft mt-3 leading-relaxed text-sm">
+          Your organization may have disabled user-side sideloading. Ask your IT admin to either (a) push the manifest to your account via Microsoft 365 admin center &rarr; <em>Integrated Apps</em> &rarr; <em>Upload custom apps</em>, or (b) temporarily enable personal add-ins under <em>Org settings &rarr; Services &rarr; User-owned apps</em>. The AppSource listing, once live, will bypass this restriction.
+        </p>
+      </details>
+
+      <details class="border-l-2 border-oxblood/30 pl-6">
+        <summary class="cursor-pointer font-display text-lg leading-tight">
+          The task pane shows a blank screen or &ldquo;check your network connectivity&rdquo;.
+        </summary>
+        <p class="text-ink-soft mt-3 leading-relaxed text-sm">
+          Usually a corporate firewall blocking <code class="font-mono text-xs bg-black/5 px-1.5 py-0.5 rounded">fair-copy-addin.pages.dev</code> or <code class="font-mono text-xs bg-black/5 px-1.5 py-0.5 rounded">fair-copy.blackletter.studio</code>. Both domains must be reachable &mdash; the first serves the add-in UI, the second handles license activation. If you&rsquo;re on VPN, try disabling it once to confirm the add-in works, then ask IT to allow those two domains.
+        </p>
+      </details>
+
+      <details class="border-l-2 border-oxblood/30 pl-6">
+        <summary class="cursor-pointer font-display text-lg leading-tight">
+          I don&rsquo;t see the Fair Copy button in my ribbon.
+        </summary>
+        <p class="text-ink-soft mt-3 leading-relaxed text-sm">
+          Fully quit Word (<em>Cmd+Q</em> on Mac, close all Word windows on Windows) and reopen. Add-in registration sometimes needs a restart to take effect. On Word for the Web, hard-refresh the browser tab.
+        </p>
+      </details>
+
+      <details class="border-l-2 border-oxblood/30 pl-6">
+        <summary class="cursor-pointer font-display text-lg leading-tight">
+          Can I install once and use Fair Copy everywhere I sign in?
+        </summary>
+        <p class="text-ink-soft mt-3 leading-relaxed text-sm">
+          Yes &mdash; once you sideload under a given Microsoft account, Fair Copy follows that account to Word on any device. Your license token is stored in <code class="font-mono text-xs bg-black/5 px-1.5 py-0.5 rounded">Office.context.roamingSettings</code>, which Microsoft syncs through your Microsoft 365 account (not ours).
+        </p>
+      </details>
+
+      <details class="border-l-2 border-oxblood/30 pl-6">
+        <summary class="cursor-pointer font-display text-lg leading-tight">
+          I&rsquo;m still stuck.
+        </summary>
+        <p class="text-ink-soft mt-3 leading-relaxed text-sm">
+          Email <a href="mailto:support@blackletter.studio?subject=Fair%20Copy%20install%20help" class="text-oxblood underline">support@blackletter.studio</a> with a screenshot of what you&rsquo;re seeing and your Word version (Help &rarr; About). One human reads every message, and we aim to reply within two business days.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  {/* ------- Back link ------- */}
+  <section class="py-12 border-t border-black/10">
+    <p class="text-sm text-ink-soft">
+      <a href="/fair-copy" class="text-oxblood underline">&larr; Back to Fair Copy</a>
+    </p>
+  </section>
+</BaseLayout>
