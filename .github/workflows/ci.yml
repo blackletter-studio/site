@@ -9,7 +9,7 @@ jobs:
   ci:
     uses: blackletter-studio/.github/.github/workflows/reusable-node-ci.yml@main
     with:
-      node-version: "20"
+      node-version: "22"
       working-directory: "."
       run-build: true
       run-test: false
