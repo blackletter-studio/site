@@ -35,6 +35,14 @@ All notable changes to the Black Letter site and public-facing infrastructure ar
 - `MobileInstallNotice` CTA button ("Email this link to myself") was `px-5 py-3`, which rendered at ~38–40px height — below the iOS 44pt touch-target minimum. Bumped to `px-6 py-4` so the tap target is comfortably above the minimum on phones.
 - `/fair-copy/install` Step 1 now names Android tablets explicitly: previously only iPad was called out, so Android-tablet users reaching the page at ≥768px viewport (which triggers the desktop install branch) would hit the download button without any on-page explanation that Word for Android doesn't support add-ins at all. New bullet distinguishes the two platforms' constraints.
 
+### Fixed (mobile audit — polish-pass completion)
+
+- Home page and other Hero-bearing pages had `py-16` on `<main>` plus `pt-16` on the `<Hero />` section, stacking to 128px of empty vertical space above the eyebrow text on a ≤667px viewport (~19% of an iPhone SE's screen). `BaseLayout <main>` is now `py-10 sm:py-16` and `Hero <section>` is now `pt-8 sm:pt-16 pb-12`, totaling 72px on mobile while leaving desktop unchanged.
+- Hero tagline on the home page (`<p class="text-lg">`) was 22px on every viewport, wrapping to ~9 lines for long taglines on narrow phones. Now `text-base sm:text-lg` (16px mobile, 22px desktop) — frees ~30% vertical space below the headline.
+- Top-nav logo (`font-display text-xl`) was 28px on every viewport, eating roughly a third of the row on a 320px-wide device. Now `text-lg sm:text-xl` (22px mobile, 28px desktop), giving more room to the stacked nav links.
+- `FeedbackForm` submit button was `px-6 py-3` at 14px text, rendering ~40px tall — below iOS's 44pt touch-target minimum. Bumped to `px-6 py-4`.
+- `<article class="prose prose-neutral ...">` on all three legal pages (`eula`, `privacy`, `terms`) was silently a no-op: the Tailwind v4 setup in `global.css` doesn't import `@tailwindcss/typography`, so those classes generated nothing. Dropped to avoid tempting future edits into expecting `prose` styling that won't apply. Visual output is unchanged — every element already carried explicit class styling.
+
 ### Added (product screenshots)
 
 - Real product screenshots shipped under `site/public/fair-copy/screenshots/` (7 images, ~3.5 MB combined):
