@@ -35,6 +35,18 @@ All notable changes to the Black Letter site and public-facing infrastructure ar
 - `MobileInstallNotice` CTA button ("Email this link to myself") was `px-5 py-3`, which rendered at ~38–40px height — below the iOS 44pt touch-target minimum. Bumped to `px-6 py-4` so the tap target is comfortably above the minimum on phones.
 - `/fair-copy/install` Step 1 now names Android tablets explicitly: previously only iPad was called out, so Android-tablet users reaching the page at ≥768px viewport (which triggers the desktop install branch) would hit the download button without any on-page explanation that Word for Android doesn't support add-ins at all. New bullet distinguishes the two platforms' constraints.
 
+### Added (product screenshots)
+
+- Real product screenshots shipped under `site/public/fair-copy/screenshots/` (7 images, ~3.5 MB combined):
+  - `hero-taskpane.png` — Fair Copy task pane open on a Word document, "Clean document" button visible
+  - `before-messy.png` / `after-clean.png` — the cleanup payoff, same paragraph before and after
+  - `safety-prompt-tracked-changes.png` / `safety-prompt-images.png` — two of the three "Safe by default" dialogs captured from live product (`TrackedChangesDialog` and `ImagesDialog` components)
+  - `proofmark-highlight.png` — Proofmark's amber-highlighter treatment in action
+  - `settings-presets.png` — cleanup-preset selector
+- `/fair-copy` landing page gains a hero image below the tagline and a two-image gallery in the "Safe by default" section showing the tracked-changes and images dialogs.
+- `/fair-copy/install` Step 4 gains the real task-pane screenshot (was a dashed placeholder). Steps 1 and 2 had placeholders for ribbon- and dialog-highlight screenshots that weren't captured yet; those placeholders are removed — the step text is clear enough without them, and the screenshots can be added in a future polish pass.
+- Canonical image location is `site/public/fair-copy/screenshots/` (served at `blackletter.studio/fair-copy/screenshots/<name>.png`). The same files also live in `docs/launch/appsource/screenshots/` in the studio repo for direct upload to Microsoft Partner Center during AppSource submission.
+
 ### In progress
 
 - Cloudflare Worker at `feedback.blackletter.studio` for the /feedback form (M1 T9-T11)

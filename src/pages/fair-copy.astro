@@ -13,6 +13,18 @@ import MobileInstallNotice from "../components/MobileInstallNotice.astro";
     Open a Word document. Click one button. Font faces, font sizes, colors, highlighting, comments, and sloppy indents — gone. Bold, italic, underline, and your paragraph alignment — kept. Now you have a clean document you can send, file, or format to house style.
   </p>
 
+  <figure class="mb-12">
+    <img
+      src="/fair-copy/screenshots/hero-taskpane.png"
+      alt="Fair Copy task pane open on the right side of a Microsoft Word document, with the Clean document button ready to run."
+      width="1600"
+      height="900"
+      loading="eager"
+      fetchpriority="high"
+      class="w-full rounded-md border border-black/10"
+    />
+  </figure>
+
   <section class="py-8 border-y border-black/10 my-8 grid sm:grid-cols-2 gap-8">
     <div>
       <h3 class="font-display text-xl mb-4">What Fair Copy keeps</h3>
@@ -43,11 +55,36 @@ import MobileInstallNotice from "../components/MobileInstallNotice.astro";
     <p class="text-ink-soft max-w-2xl mb-4">
       Three operations always surface a confirmation dialog &mdash; never silent, never surprising:
     </p>
-    <ul class="text-ink-soft space-y-3 max-w-2xl">
+    <ul class="text-ink-soft space-y-3 max-w-2xl mb-8">
       <li><strong class="text-ink">Tracked changes.</strong> Default is &ldquo;reject all&rdquo; &mdash; but only after you confirm, with options to review first or leave them alone.</li>
       <li><strong class="text-ink">Images.</strong> Default is &ldquo;warn and list&rdquo; &mdash; Fair Copy shows the images it found (signature blocks, letterheads, exhibits) and asks what to do.</li>
       <li><strong class="text-ink">Marked-Final or password-protected documents.</strong> Warned before any change.</li>
     </ul>
+
+    <div class="grid sm:grid-cols-2 gap-6">
+      <figure>
+        <img
+          src="/fair-copy/screenshots/safety-prompt-tracked-changes.png"
+          alt="Fair Copy's tracked-changes confirmation dialog, listing the redlines in the document and offering three choices: Review first, Reject and clean, or Leave changes."
+          width="1600"
+          height="900"
+          loading="lazy"
+          class="w-full rounded-md border border-black/10"
+        />
+        <figcaption class="text-xs text-ink-soft mt-2 italic">Tracked-changes confirmation &mdash; counts the redlines and lets you choose what happens before cleanup.</figcaption>
+      </figure>
+      <figure>
+        <img
+          src="/fair-copy/screenshots/safety-prompt-images.png"
+          alt="Fair Copy's images confirmation dialog, listing the images found in the document and asking whether to keep, remove, or review them."
+          width="1600"
+          height="900"
+          loading="lazy"
+          class="w-full rounded-md border border-black/10"
+        />
+        <figcaption class="text-xs text-ink-soft mt-2 italic">Images confirmation &mdash; letterheads, signature blocks, and exhibits get inventoried before any change.</figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="py-8 border-t border-black/10">
