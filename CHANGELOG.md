@@ -29,6 +29,14 @@ All notable changes to the Black Letter site and public-facing infrastructure ar
 - Top navigation switches from horizontal-tight to vertical-stacked on narrow screens: logo on the first row, nav links on the second, with `flex-wrap` so the four links reflow instead of overflowing.
 - `NetworkTrafficTable` on `/trust` is wrapped in `overflow-x-auto` with a `min-w-[640px]` on the table itself and a "swipe the table horizontally" hint beneath — wide four-column tables no longer squash into illegibility on phones.
 
+### Fixed (mobile audit follow-ups)
+
+- Footer nav (Privacy / Terms / EULA / Feedback / Security) was `flex gap-4` with no wrap, so on an iPhone SE the five 14px links overflowed the ~327px content area. Added `flex-wrap gap-x-4 gap-y-2` so the links reflow onto a second row when they don't fit, preserving desktop layout unchanged.
+- `MobileInstallNotice` CTA button ("Email this link to myself") was `px-5 py-3`, which rendered at ~38–40px height — below the iOS 44pt touch-target minimum. Bumped to `px-6 py-4` so the tap target is comfortably above the minimum on phones.
+- `/fair-copy/install` Step 1 now names Android tablets explicitly: previously only iPad was called out, so Android-tablet users reaching the page at ≥768px viewport (which triggers the desktop install branch) would hit the download button without any on-page explanation that Word for Android doesn't support add-ins at all. New bullet distinguishes the two platforms' constraints.
+
+### In progress
+
 - Cloudflare Worker at `feedback.blackletter.studio` for the /feedback form (M1 T9-T11)
 - Replacing the /feedback placeholder with a working form (M1 T11)
 - Replacing the hardcoded Buttondown username placeholder once an account is provisioned
